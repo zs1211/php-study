@@ -21,6 +21,69 @@
 
 #4 string hex2bin ( string $data ) 转换十六进制字符串为二进制字符串
 
-echo hex2bin('616161'); //aaa
+#echo hex2bin('616161'); //aaa
 
-//echo ord('A');
+#5 chop()  rtrim的别名
+
+#6 chr() 返回相对应于 ascii 所指定的单个字符
+
+#echo chr(65); //A
+#echo chr(1000); //?
+
+#7 ord() 返回字符对应的ascii码
+
+#echo ord('/'); //47
+//echo ord('我'); //230
+
+//echo chr(0x65);
+
+//$str = '我是谁';
+
+//echo ord($str[0]);
+
+function utf8_sub($str,$start,$len) {
+
+
+    $loop =0;
+
+    $res = '';
+    for ($i = 0 ; $i < strlen($str); ) {
+
+
+        $ord = ord($str[$i]);
+        if($ord <= 127) {
+            $j = 1;
+        } elseif ($ord < 128 + 64 + 32){
+            $j = 2;
+        } elseif ($ord < 128 + 64 + 32 + 16){
+           $j = 3;
+        } elseif ($ord < 128 + 64 + 32 + 16 + 8){
+            $j =4;
+
+        } elseif ($ord < 128 + 64 + 32 + 16 + 8+4){
+            $j = 5;
+        } else {
+            $j = 6;
+        }
+
+        echo $ord , '   ', $j ,PHP_EOL;
+        if($loop >= $start && $len>0){
+            $len -- ;
+            for ($k = 0; $k < $j; $k++){
+                $res.= $str[$i+$k];
+            }
+
+        }
+        $loop++;
+        $i +=$j;
+    }
+    return $res;
+}
+
+$str = 'ab我defghijk';
+
+
+echo utf8_sub($str,2,3);
+
+
+//echo ord('abc'); // 97
