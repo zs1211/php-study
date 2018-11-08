@@ -24,6 +24,10 @@ class SingleList{
     private $length = 0;
 
 
+    public function size(){
+        return $this->length;
+    }
+
     public function printNode()
     {
         echo PHP_EOL ;
