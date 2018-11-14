@@ -35,7 +35,7 @@
 #echo ord('/'); //47
 //echo ord('我'); //230
 
-//echo chr(0x65);
+//echo chr(321);  如果数字大于256 就会对256求余数 mod
 
 //$str = '我是谁';
 
@@ -66,7 +66,6 @@ function utf8_sub($str,$start,$len) {
             $j = 6;
         }
 
-        echo $ord , '   ', $j ,PHP_EOL;
         if($loop >= $start && $len>0){
             $len -- ;
             for ($k = 0; $k < $j; $k++){
@@ -80,10 +79,15 @@ function utf8_sub($str,$start,$len) {
     return $res;
 }
 
-$str = 'ab我defghijk';
+//$str = 'ab我defghijk';
 
 
-echo utf8_sub($str,2,3);
+//echo utf8_sub($str,2,3);
 
 
-//echo ord('abc'); // 97
+$binary = "11111001";
+
+echo bin2hex($binary) . PHP_EOL;
+$hex = dechex(bindec($binary));
+echo $hex;
+
